@@ -1,0 +1,67 @@
+{% extends 'enroll/base.html' %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-4">
+    <div class="card" style="width: 20rem;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    <h4 class="alert alert-custom  text-center" style="background-color:#388E3C;
+  color:#fff; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">Add Employee</h4>
+        <div class="container">
+    <form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="container text-center mb-2">
+    <input href="/" type="submit" class="btn" style="background-color:#388E3C;  color: white;" value="submit" >
+    </div>
+    </form>
+        </div>
+    </div>
+    </div>
+
+    <div class="col-sm-7">
+    <div class="card" style="width: 50rem;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <h4 class="alert alert-custom  text-center" style="background-color:#388E3C;
+  color:#fff;">Employee Records</h4>
+        {% if emp %}
+            <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">First_name</th>
+      <th scope="col">Last_name</th>
+      <th scope="col">Email</th>
+        <th scope="col">Password</th>
+        <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for e in emp %}
+    <tr>
+      <th scope="row">{{ e.id}}</th>
+      <td>{{ e.First_name}}</td>
+      <td>{{ e.Last_name }}</td>
+      <td>{{ e.Email }}</td>
+        <td>{{ e.Password }}</td>
+        <td>
+            <a href="{% url 'updatedata' e.id %}" class="btn btn-warning btn-sm">Edit</a>
+            <form action="{% url 'deletedata' e.id %}" method="post" class="d-inline">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-danger" value="Delete" />
+
+            </form>
+
+        </td>
+
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+        {% else %}
+        <h4 class="alert alert-warning text-center"> No Records</h4>
+        {% endif  %}
+
+    </div>
+    </div>
+    </div>
+
+{% endblock content %}

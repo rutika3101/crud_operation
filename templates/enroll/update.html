@@ -1,0 +1,25 @@
+{% extends 'enroll/base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-8 offset-1">
+        <div class="container">
+         <h4 class="alert alert-light">Update Employee Information</h4>
+        <form action="#" method="post" class="form-horizontal">
+            <div class="form-group row">
+                <div class="col-sm-6">
+            {% csrf_token %}
+            {{ form.as_p }}
+                    <div class="container text-center mb-2">
+            <input href="/" type="submit" class="btn" style="background-color:#2E86C1;  color: white;" value="Update" >
+                        <a href="{% url 'addshow'%}" class="btn" style=" background-color:#388E3C;color: white;">Back To Home</a>
+                    </div>
+                    </div>
+                </div>
+
+        </form>
+            </div>
+
+    </div>
+    </div>
+
+{% endblock content %}
